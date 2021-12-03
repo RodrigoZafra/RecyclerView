@@ -55,7 +55,19 @@ public class MainActivity extends AppCompatActivity {
                 animalNames.add(posicionInsercion, item);
                 adapter.notifyItemInserted(posicionInsercion);
                 adapter.notifyItemRangeChanged(0, animalNames.size());
-                adapter.decrementarPos();
+            }
+        });
+        Button bBorrar = findViewById(R.id.borrar);
+        bBorrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = adapter.getPos();
+                if (adapter.getPos() >= 0) {
+                    animalNames.remove(adapter.getPos());
+                    adapter.notifyItemRemoved(adapter.getPos());
+                    adapter.notifyItemRangeChanged(0, animalNames.size());
+                    adapter.decrementarPos();
+                }
             }
         });
     }
